@@ -1,10 +1,11 @@
-package regres.crud;
+package regres.crud.ok200;
 
 import io.restassured.http.ContentType;
 import org.example.dto.request.RegisterRequest;
 import org.example.dto.response.SuccessRegisterResponse;
 import org.example.dto.response.UserData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class GettingOperationsTest {
     private final String baseUrl = "https://reqres.in/";
 
     @Test
+    @Tag("OK200")
     public void testGettingListOfUsers() {
         List<UserData> userDataList = given()
                 .contentType(ContentType.JSON)
@@ -30,7 +32,7 @@ public class GettingOperationsTest {
         }
     }
 
-
+    @Tag("OK200")
     @Test
     public void testSuccessfulRegistration() {
         RegisterRequest request = RegisterRequest.builder()

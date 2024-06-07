@@ -23,7 +23,6 @@ pipeline {
                     bat 'echo Java version:'
                     bat 'java -version'
                 }
-                // Сборка проекта с использованием Maven
                 bat 'mvn clean install'
             }
         }
@@ -31,8 +30,10 @@ pipeline {
         stage('Test') {
             steps {
                 // Запуск тестов с использованием Maven
-                bat 'mvn clean test'
+                bat 'mvn clean test -Dgroups=ok200'
+                bat 'mvn clean test -Dgroups=bad400'
             }
+
             post {
                 always {
                     // Архивация Allure результатов
