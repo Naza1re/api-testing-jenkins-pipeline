@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         MAVEN_OPTS = '-Dmaven.test.failure.ignore=true'
+        JAVA_HOME = tool name: 'JDK 17', type: 'JDK'  // Убедитесь, что JDK 17 настроен в Jenkins
+        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
     }
 
     stages {
@@ -16,21 +18,21 @@ pipeline {
             steps {
                 script {
                     // Отладочные шаги
-                    sh 'echo "Running on $(uname -a)"'
-                    sh 'echo "Maven version:"'
-                    sh 'mvn -v'
-                    sh 'echo "Java version:"'
-                    sh 'java -version'
+                    bat 'echo Running on %COMPUTERNAME%'
+                    bat 'echo Maven version:'
+                    bat 'mvn -v'
+                    bat 'echo Java version:'
+                    bat 'java -version'
                 }
                 // Сборка проекта с использованием Maven
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
                 // Запуск тестов с использованием Maven
-                sh 'mvn test'
+                bat 'mvn test'
             }
             post {
                 always {
