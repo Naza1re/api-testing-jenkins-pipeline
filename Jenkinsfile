@@ -1,10 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        MAVEN_OPTS = '-Dmaven.test.failure.ignore=true'
-        JAVA_HOME = tool name: 'JDK 17', type: 'JDK'  // Убедитесь, что JDK 17 настроен в Jenkins
-        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+   tools {
+        maven "Maven"
+        jdk "JDK 17"
     }
 
     stages {
