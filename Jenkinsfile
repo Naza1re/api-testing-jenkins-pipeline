@@ -14,6 +14,14 @@ pipeline {
 
         stage('Build') {
             steps {
+                script {
+                    // Отладочные шаги
+                    sh 'echo "Running on $(uname -a)"'
+                    sh 'echo "Maven version:"'
+                    sh 'mvn -v'
+                    sh 'echo "Java version:"'
+                    sh 'java -version'
+                }
                 // Сборка проекта с использованием Maven
                 sh 'mvn clean install'
             }
