@@ -31,7 +31,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Запуск тестов с использованием Maven
-                bat 'mvn test'
+                bat 'mvn clean test'
             }
             post {
                 always {
