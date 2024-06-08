@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Отладочные шаги
+
                     bat 'echo Running on %COMPUTERNAME%'
                     bat 'echo Maven version:'
                     bat 'mvn -v'
@@ -29,18 +29,18 @@ pipeline {
 
         stage('Test') {
             steps {
-                // Запуск тестов с использованием Maven
+
                 bat 'mvn clean test -Dgroups=ok200'
                 bat 'mvn clean test -Dgroups=bad400'
             }
 
             post {
                 always {
-                    // Архивация Allure результатов
+
                     archiveArtifacts artifacts: '**/target/allure-results/*', allowEmptyArchive: true
                 }
                 success {
-                    // Публикация Allure отчета
+
                     allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
                 }
             }
