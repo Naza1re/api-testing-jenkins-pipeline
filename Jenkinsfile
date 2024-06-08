@@ -23,9 +23,10 @@ pipeline {
                     bat 'echo Java version:'
                     bat 'java -version'
                 }
-                bat 'mvn clean install'
+                bat 'mvn clean install -DskipTests'
             }
         }
+
 
         stage('Test') {
             steps {
