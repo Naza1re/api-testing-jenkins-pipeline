@@ -23,7 +23,7 @@ pipeline {
                     bat 'echo Java version:'
                     bat 'java -version'
                 }
-                bat 'mvn clean install -DskipTests'
+                bat 'mvn validate'
             }
         }
 
