@@ -32,7 +32,7 @@ pipeline {
             steps {
 
                 bat 'mvn clean test -Dgroups=ok200'
-                bat 'mvn clean test -Dgroups=bad400'
+                bat 'mvn test -Dgroups=bad400'
             }
 
             post {
